@@ -2,21 +2,50 @@
 
 ## Machine Learning-Based Smart Room Occupancy Prediction for Energy-Efficient Building Management
 
-### Project Overview
+Smart Room Occupancy Prediction is a machine learning-based system that predicts whether a room is **Occupied** or **Unoccupied** using environmental sensor data.
 
-This project uses machine learning to predict whether a room is occupied or unoccupied using environmental sensor measurements.
+The system combines a trained machine learning model with a backend prediction API and a frontend dashboard for monitoring occupancy, environmental conditions, analytics, and energy-saving recommendations.
 
-The system analyzes parameters such as temperature, humidity, light intensity, CO2 concentration, and humidity ratio to classify room occupancy.
+---
 
-Based on the predicted occupancy status, the system provides an energy-saving recommendation.
+## 📌 Project Overview
 
-### Objective
+Building energy consumption can be reduced by adapting room operation according to occupancy.
 
-The main objective of this project is to develop a machine learning-based occupancy prediction system that can support energy-efficient building management.
+This project uses environmental parameters such as:
 
-### Dataset
+- Temperature
+- Humidity
+- Light
+- CO₂
+- Humidity Ratio
 
-The project uses the UCI Occupancy Detection dataset.
+to predict room occupancy.
+
+Based on the predicted occupancy status, the system provides an energy recommendation:
+
+- **Occupied → Normal Operation**
+- **Unoccupied → Energy-Saving Mode**
+
+The system provides recommendations based on predictions; it does not directly control physical electrical devices.
+
+---
+
+## 🎯 Objectives
+
+- Predict room occupancy using environmental sensor data.
+- Apply machine learning classification algorithms.
+- Compare the performance of multiple ML models.
+- Provide occupancy predictions through a backend API.
+- Display predictions and sensor information through a web dashboard.
+- Generate energy-saving recommendations based on occupancy.
+- Maintain prediction history for analysis.
+
+---
+
+## 📊 Dataset
+
+The project uses the **UCI Occupancy Detection Dataset**.
 
 Dataset source:
 
@@ -24,94 +53,77 @@ https://archive.ics.uci.edu/dataset/357/occupancy-detection
 
 ### Input Features
 
-- Temperature
-- Humidity
-- Light
-- CO2
-- HumidityRatio
+| Feature | Description |
+|---|---|
+| Temperature | Room temperature |
+| Humidity | Relative humidity |
+| Light | Light intensity |
+| CO₂ | CO₂ concentration |
+| HumidityRatio | Humidity ratio |
 
-### Target Variable
+### Target
 
-Occupancy
+**Occupancy**
 
-- 0 - Unoccupied
-- 1 - Occupied
+- `0` → Unoccupied
+- `1` → Occupied
 
-### Machine Learning Algorithms
+---
 
-The following classification algorithms are implemented:
+## 🤖 Machine Learning Models
 
-- Logistic Regression
-- K-Nearest Neighbors (KNN)
-- Decision Tree
-- Support Vector Machine (SVM)
+The project implements and evaluates the following classification algorithms:
 
-### Data Preprocessing
+1. Logistic Regression
+2. K-Nearest Neighbors (KNN)
+3. Decision Tree
+4. Support Vector Machine (SVM)
 
-The preprocessing pipeline includes:
+The trained model and preprocessing components are stored in the backend `models/` directory.
+
+---
+
+## 🔧 Data Preprocessing
+
+The machine learning pipeline includes:
 
 - Data quality checking
 - Missing-value verification
-- Duplicate checking
 - Feature selection
 - Target preparation
-- Feature scaling
-- Train-test splitting
+- Feature scaling / normalization
+- Train-test preparation
+- Model training
+- Model comparison
 
-### Model Evaluation
+Feature scaling is particularly important for algorithms such as KNN, Logistic Regression, and SVM.
 
-The models are evaluated using:
+---
+
+## 📈 Model Evaluation
+
+The models are evaluated using classification metrics such as:
 
 - Accuracy
 - Precision
 - Recall
-- F1-score
+- F1-Score
 - Confusion Matrix
 - ROC-AUC
-- Cross-validation
 
-### Energy-Saving Recommendation
+Model comparison results are stored in:
 
-The predicted occupancy status is converted into an energy-saving recommendation.
+`backend/models/model_comparison.csv`
 
-- Occupied → Normal Operation
-- Unoccupied → Energy-Saving Mode
+---
 
-The current system provides a recommendation. It does not directly control physical lights or HVAC equipment.
+## 🧠 Trained Model
 
-### Technologies Used
-
-- Python
-- Jupyter Notebook
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-
-### Project Workflow
+The backend contains the trained machine learning components:
 
 ```text
-UCI Dataset
-    ↓
-Data Preprocessing
-    ↓
-Exploratory Data Analysis
-    ↓
-Feature Selection
-    ↓
-Feature Scaling
-    ↓
-Train-Test Split
-    ↓
-Model Training
-    ↓
-Hyperparameter Tuning
-    ↓
-Cross-Validation
-    ↓
-Model Evaluation
-    ↓
-Occupancy Prediction
-    ↓
-Energy-Saving Recommendation
+backend/models/
+├── feature_info.pkl
+├── smartroom_scaler.pkl
+├── smartroom_voting_model.pkl
+└── model_comparison.csv
